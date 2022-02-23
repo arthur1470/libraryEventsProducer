@@ -1,33 +1,18 @@
 package com.library.producer.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Builder
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class LibraryEvent {
 
 	private Integer libraryEventId;
 	private Book book;
-
-	public LibraryEvent() {
-		super();
-	}
-
-	public LibraryEvent(Integer libraryEventId, Book book) {
-		super();
-		this.libraryEventId = libraryEventId;
-		this.book = book;
-	}
-
-	public Integer getLibraryEventId() {
-		return libraryEventId;
-	}
-
-	public void setLibraryEventId(Integer libraryEventId) {
-		this.libraryEventId = libraryEventId;
-	}
-
-	public Book getBook() {
-		return book;
-	}
-
-	public void setBook(Book book) {
-		this.book = book;
-	}
 }
