@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.library.producer.domain.LibraryEvent;
+import com.library.producer.domain.LibraryEventType;
 import com.library.producer.producer.LibraryEventProducer;
 
 @RestController
@@ -20,6 +21,7 @@ public class LibraryEventsController {
 
 	@PostMapping("/v1/libraryevent")
 	public ResponseEntity<LibraryEvent> postLibraryEvent(@RequestBody LibraryEvent libraryEvent) throws Exception {
+		libraryEvent.setLibraryEventType(LibraryEventType.NEW);
 		libraryEventProducer.sendLibraryEventSynchronous(libraryEvent);
 		return ResponseEntity.status(HttpStatus.CREATED).body(libraryEvent);
 	}
