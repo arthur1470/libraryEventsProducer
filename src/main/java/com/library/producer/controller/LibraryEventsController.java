@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.library.producer.domain.LibraryEvent;
 import com.library.producer.producer.LibraryEventProducer;
 
@@ -20,8 +19,8 @@ public class LibraryEventsController {
 	}
 
 	@PostMapping("/v1/libraryevent")
-	public ResponseEntity<LibraryEvent> postLibraryEvent(@RequestBody LibraryEvent libraryEvent) throws JsonProcessingException {
-		libraryEventProducer.sendLibraryEvent(libraryEvent);
+	public ResponseEntity<LibraryEvent> postLibraryEvent(@RequestBody LibraryEvent libraryEvent) throws Exception {
+		libraryEventProducer.sendLibraryEventSynchronous(libraryEvent);
 		return ResponseEntity.status(HttpStatus.CREATED).body(libraryEvent);
 	}
 }
