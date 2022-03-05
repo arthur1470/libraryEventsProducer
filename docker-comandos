@@ -1,0 +1,2 @@
+docker rm-f $(docker ps -a -q) -> Deletar todos containers
+docker volume rm $(docker volume ls -q) -> Deletar todos volumes
