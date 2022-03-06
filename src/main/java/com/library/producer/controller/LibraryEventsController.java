@@ -1,5 +1,7 @@
 package com.library.producer.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +22,7 @@ public class LibraryEventsController {
 	}
 
 	@PostMapping("/v1/libraryevent")
-	public ResponseEntity<LibraryEvent> postLibraryEvent(@RequestBody LibraryEvent libraryEvent) throws Exception {
+	public ResponseEntity<LibraryEvent> postLibraryEvent(@RequestBody @Valid LibraryEvent libraryEvent) throws Exception {
 		libraryEvent.setLibraryEventType(LibraryEventType.NEW);
 		libraryEventProducer.sendLibraryEventSynchronous(libraryEvent);
 		return ResponseEntity.status(HttpStatus.CREATED).body(libraryEvent);

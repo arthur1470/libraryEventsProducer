@@ -30,7 +30,6 @@ public class LibraryEventProducer {
 	}
 	
 	public void sendLibraryEventSynchronous (LibraryEvent libraryEvent) throws Exception {
-		
 		Integer key = libraryEvent.getLibraryEventId();
 		String value = objectMapper.writeValueAsString(libraryEvent);
 		
