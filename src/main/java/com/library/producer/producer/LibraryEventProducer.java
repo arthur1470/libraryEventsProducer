@@ -29,7 +29,7 @@ public class LibraryEventProducer {
 		this.objectMapper = objectMapper;
 	}
 	
-	public void sendLibraryEventSynchronous (LibraryEvent libraryEvent) throws Exception {
+	public ListenableFuture<SendResult<Integer, String>> sendLibraryEventSynchronous (LibraryEvent libraryEvent) throws Exception {
 		Integer key = libraryEvent.getLibraryEventId();
 		String value = objectMapper.writeValueAsString(libraryEvent);
 		
@@ -49,7 +49,7 @@ public class LibraryEventProducer {
 			}
 		});
 		
-		
+		return listenableFuture;		
 	}
 	
 	private ProducerRecord<Integer, String> buildProducerRecord(Integer key, String value, String topic) {
