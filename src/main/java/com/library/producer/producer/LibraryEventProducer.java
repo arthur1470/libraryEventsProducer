@@ -29,7 +29,7 @@ public class LibraryEventProducer {
 		this.objectMapper = objectMapper;
 	}
 	
-	public ListenableFuture<SendResult<Integer, String>> sendLibraryEventSynchronous (LibraryEvent libraryEvent) throws Exception {
+	public ListenableFuture<SendResult<Integer, String>> sendLibraryEventSynchronous(LibraryEvent libraryEvent) throws Exception {
 		Integer key = libraryEvent.getLibraryEventId();
 		String value = objectMapper.writeValueAsString(libraryEvent);
 		
@@ -40,12 +40,12 @@ public class LibraryEventProducer {
 		listenableFuture.addCallback(new ListenableFutureCallback<SendResult<Integer, String>>() {
 			@Override
 			public void onSuccess(SendResult<Integer, String> result) {
-				log.info("Success: ", result.getProducerRecord());
+				log.info("Success: {}", result.getProducerRecord());
 			}
 			
 			@Override
 			public void onFailure(Throwable ex) {
-				log.error("Failure: ", ex.getMessage());
+				log.error("Failure: {}", ex.getMessage());
 			}
 		});
 		
